@@ -33,5 +33,7 @@ public class SecurityController {
 		responseEntity = new ResponseEntity<>(map,HttpStatus.OK);
 		return responseEntity;
 	}
+	
+
 
 }

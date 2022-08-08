@@ -1,9 +1,15 @@
 package com.cts.eaution.vo;
 
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 public class UserDetailVO {
 	private Long userDetailId;
+	@NotNull(message="{validation.sso.user.fname.notnull}")
+	@Size(min = 5, max = 30,message = "{validation.sso.user.fname.size}")
 	private String firstName;
+	@NotNull(message="{validation.sso.user.lname.notnull}")
+	@Size(min = 5, max = 30,message = "{validation.sso.user.lname.size}")
 	private String lastName;
 	private String address;
 	private String city;

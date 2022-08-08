@@ -29,6 +29,8 @@ public class User implements Serializable{
 	private String email;
 	@Column(name="password")
 	private String password;
+	@Column(name="phone_number")
+	private String phoneNumber;
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="userDetailId")
 	private UserDetails userDetails;
@@ -99,6 +101,14 @@ public class User implements Serializable{
 
 	public void setRole(Role role) {
 		this.role = role;
+	}
+
+	public String getPhoneNumber() {
+		return phoneNumber;
+	}
+
+	public void setPhoneNumber(String phoneNumber) {
+		this.phoneNumber = phoneNumber;
 	}
 	
 	

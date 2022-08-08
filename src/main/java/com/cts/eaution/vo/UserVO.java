@@ -2,18 +2,33 @@ package com.cts.eaution.vo;
 
 import java.util.Date;
 
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 import com.cts.eaution.entities.Role;
-import com.cts.eaution.entities.UserDetails;
 
 public class UserVO {
 	private Long id;
+	@NotNull(message="{validation.sso.user.email.notnull}")
+	@Email
 	private String email;
 	private String password;
-	private UserDetails userDetails;
+	private UserDetailVO userDetails;
 	private Role role;
 	private Date createdDate;
 	private Date modifiedDate;
+	@NotNull(message="{validation.sso.user.mphone.notnull}")
+	@Size(min = 10, max = 10,message = "{validation.sso.user.mphone.size}")
+	private String phoneNumber;
+	
+	public String getPhoneNumber() {
+		return phoneNumber;
+	}
+	public void setPhoneNumber(String phoneNumber) {
+		this.phoneNumber = phoneNumber;
+	}
+
 	public Long getId() {
 		return id;
 	}
@@ -32,12 +47,7 @@ public class UserVO {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	public UserDetails getUserDetails() {
-		return userDetails;
-	}
-	public void setUserDetails(UserDetails userDetails) {
-		this.userDetails = userDetails;
-	}
+	
 	public Role getRole() {
 		return role;
 	}
@@ -55,5 +65,11 @@ public class UserVO {
 	}
 	public void setModifiedDate(Date modifiedDate) {
 		this.modifiedDate = modifiedDate;
+	}
+	public UserDetailVO getUserDetails() {
+		return userDetails;
+	}
+	public void setUserDetails(UserDetailVO userDetails) {
+		this.userDetails = userDetails;
 	}
 }
