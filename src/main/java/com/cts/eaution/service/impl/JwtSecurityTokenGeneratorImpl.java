@@ -12,9 +12,16 @@ import com.cts.eaution.vo.UserVO;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
+/**
+ * @author aadi
+ *JWT implementation
+ */
 @Service
 public class JwtSecurityTokenGeneratorImpl implements SecurityTokenGenerator{
 
+	/**
+	 *Generate token for the user
+	 */
 	@Override
 	public Map<String, String> generateToken(UserVO user) {
 		// TODO Auto-generated method stub
@@ -27,7 +34,7 @@ public class JwtSecurityTokenGeneratorImpl implements SecurityTokenGenerator{
 			}
 			
 			String jwtToken = "";
-			jwtToken= Jwts.builder().setSubject(user.getEmail()).claim("roles", claims).setIssuedAt(new Date()).signWith(SignatureAlgorithm.HS256, "secretkey").compact();
+			jwtToken= Jwts.builder().setSubject(user.getEmail()).claim("roles", claims).setIssuedAt(new Date()).signWith(SignatureAlgorithm.HS256, "secretkey").setExpiration(new Date(System.currentTimeMillis() + 30*1000)).compact();
 			Map<String,String> map = new HashMap<>();
 			map.put("token", jwtToken);
 			map.put("message", "User successfully logged in ");

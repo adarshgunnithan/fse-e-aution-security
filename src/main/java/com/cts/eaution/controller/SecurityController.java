@@ -14,14 +14,24 @@ import com.cts.eaution.service.SecurityTokenGenerator;
 import com.cts.eaution.service.UserService;
 import com.cts.eaution.vo.UserVO;
 
+/**
+ * @author aadi
+ *Controller for authentication/authorization
+ */
 @RestController
-@RequestMapping("api/v1/auth")
+@RequestMapping("/api/v1/auth")
 public class SecurityController {
+	
 	@Autowired
 	UserService userServiceImpl;
 	@Autowired
 	SecurityTokenGenerator jwtSecurityTokenGeneratorImpl;
 	
+	/**
+	 * API for authentication and issue token
+	 * @param userVO
+	 * @return
+	 */
 	@PostMapping("/login")
 	public ResponseEntity<?> login (@RequestBody UserVO userVO){
 		ResponseEntity<?> responseEntity =null;

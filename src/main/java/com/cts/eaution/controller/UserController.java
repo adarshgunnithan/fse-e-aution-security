@@ -10,6 +10,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.cts.eaution.service.UserService;
 import com.cts.eaution.vo.UserVO;
+/**
+ * @author aadi
+ *Controller for user operations
+ */
 @RestController
 @RequestMapping("api/v1/user")
 public class UserController {
@@ -17,6 +21,12 @@ public class UserController {
 	@Autowired
 	UserService userServiceImpl;
 	
+	/**
+	 * For registering new user
+	 * @param <T>
+	 * @param userVO
+	 * @return
+	 */
 	@PostMapping
 	public <T> ResponseEntity<?> registerUser(@RequestBody UserVO userVO) {
 		T responseUser=(T) userServiceImpl.saveUser(userVO);

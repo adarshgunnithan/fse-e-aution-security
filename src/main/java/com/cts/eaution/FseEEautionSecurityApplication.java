@@ -3,6 +3,10 @@ package com.cts.eaution;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+/**
+ * @author aadi
+ *Root of security application
+ */
 @SpringBootApplication
 public class FseEEautionSecurityApplication {
 

@@ -8,6 +8,10 @@ import com.cts.eaution.dao.UserDao;
 import com.cts.eaution.entities.User;
 import com.cts.eaution.service.UserService;
 import com.cts.eaution.vo.UserVO;
+/**
+ * @author aadi
+ *Implementation of user service
+ */
 @Service
 public class UserServiceImpl implements UserService{
 	

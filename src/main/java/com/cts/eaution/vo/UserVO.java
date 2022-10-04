@@ -6,8 +6,6 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-import com.cts.eaution.entities.Role;
-
 public class UserVO {
 	private Long id;
 	@NotNull(message="{validation.sso.user.email.notnull}")
