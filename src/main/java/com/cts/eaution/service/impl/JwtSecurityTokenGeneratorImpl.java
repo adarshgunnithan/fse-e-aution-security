@@ -32,9 +32,10 @@ public class JwtSecurityTokenGeneratorImpl implements SecurityTokenGenerator{
 			}else {
 				claims.put("scopes", "SELLER");
 			}
-			
+			claims.put("userEmail", user.getEmail());
+			claims.put("userID", user.getId());
 			String jwtToken = "";
-			jwtToken= Jwts.builder().setSubject(user.getEmail()).claim("roles", claims).setIssuedAt(new Date()).signWith(SignatureAlgorithm.HS256, "secretkey").setExpiration(new Date(System.currentTimeMillis() + 30*1000)).compact();
+			jwtToken= Jwts.builder().setSubject(user.getEmail()).claim("roles", claims).setIssuedAt(new Date()).signWith(SignatureAlgorithm.HS256, "secretkey").setExpiration(new Date(System.currentTimeMillis() + 30*100000)).compact();
 			Map<String,String> map = new HashMap<>();
 			map.put("token", jwtToken);
 			map.put("message", "User successfully logged in ");

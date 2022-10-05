@@ -6,6 +6,8 @@ import org.springframework.stereotype.Service;
 
 import com.cts.eaution.dao.UserDao;
 import com.cts.eaution.entities.User;
+import com.cts.eaution.exception.ExceptionCodes;
+import com.cts.eaution.exception.SecurityException;
 import com.cts.eaution.service.UserService;
 import com.cts.eaution.vo.UserVO;
 /**
@@ -19,12 +21,21 @@ public class UserServiceImpl implements UserService{
 	UserDao userDao;
 
 	@Override
-	public UserVO saveUser(UserVO userVO) {
-		User user = new User();
-		BeanUtils.copyProperties(userVO, user);
-		User savedUser=	userDao.save(user);
-		UserVO responseUserVO = new UserVO();
-		BeanUtils.copyProperties(savedUser, responseUserVO);
+	public UserVO saveUser(UserVO userVO) throws SecurityException {
+		UserVO responseUserVO = null;
+		User userEntity= null;
+		
+		User validationUser=userDao.findByEmail(userVO.getEmail());
+		if(validationUser == null) {
+			userEntity= new User();
+			BeanUtils.copyProperties(userVO, userEntity);
+			userEntity =	userDao.save(userEntity);
+			responseUserVO= new UserVO();
+			BeanUtils.copyProperties(userEntity, responseUserVO);
+		}else {
+			throw new SecurityException(ExceptionCodes.USER_ID_ALREADY_EXISTS, "Email id is already registered, Please try with new user");
+		}
+		
 		return responseUserVO;
 	}
 
@@ -39,5 +50,7 @@ public class UserServiceImpl implements UserService{
 		}
 		return userVO;
 	}
+
+	
 
 }

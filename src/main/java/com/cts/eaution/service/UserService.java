@@ -1,5 +1,6 @@
 package com.cts.eaution.service;
 
+import com.cts.eaution.exception.SecurityException;
 import com.cts.eaution.vo.UserVO;
 
 /**
@@ -12,8 +13,9 @@ public interface UserService {
 	 * API for save user
 	 * @param userVO
 	 * @return
+	 * @throws SecurityException 
 	 */
-	public UserVO saveUser(UserVO userVO);
+	public UserVO saveUser(UserVO userVO) throws SecurityException;
 	/**
 	 * API to get user by userid and password for authentication
 	 * @param userid
@@ -21,5 +23,7 @@ public interface UserService {
 	 * @return
 	 */
 	public UserVO findByUseridAndPassword(String userid, String password);
+	
+
 
 }

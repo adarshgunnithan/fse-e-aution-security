@@ -17,4 +17,11 @@ public interface UserDao extends CrudRepository<User, Long>{
  * @return
  */
 User  findByEmailAndPassword(String userId, String password);
+
+/**
+ * API to get user by email id
+ * @param emailId
+ * @return
+ */
+User findByEmail(String emailId);
 }
